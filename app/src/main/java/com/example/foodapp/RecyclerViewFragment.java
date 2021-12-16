@@ -108,7 +108,6 @@ public class RecyclerViewFragment extends Fragment {
                 Log.d("intolerance type:", mDietPlan);
 
 
-                //mFoodList.add(new FoodListItem("https:\\/\\/spoonacular.com\\/recipeImages\\/654959-312x231.jpg", "Pasta With Tuna", 45));
                 try {
                     // fetch JSONArray named results
 //                    Log.d("try block start:", response.toString());
