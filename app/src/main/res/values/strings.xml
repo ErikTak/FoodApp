@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">dietamin recipe app</string>
+
+    <!-- Home Fragment -->
+
+    <string name="tv_welcome">Welcome to Dietamin! Let\'s get you a tasty meal recipe!</string>
+    <string name="btn_find_food">Search Recipes</string>
+    <string name="btn_calorie_calculator">Calorie calculator</string>
+
+    <!-- Search Settings Fragment -->
+
+    <string name="tv_calorie_calculator_label">Would you like to count your ideal calorie intake?</string>
+    <string name="tv_diet_plan_label">What kind of diet plan are you following?</string>
+    <string name="tv_allergen_label">Do you have any allergies?</string>
+    <string name="btn_find_meals">Find meals</string>
+    <string name="et_enter_food">Search...</string>
+
+    <string-array name="spn_diet_choice_array">
+        <item>glutenfree</item>
+        <item>ketogenic</item>
+        <item>vegetarian</item>
+        <item>lacto-vegetarian</item>
+        <item>ovo-vegetarian</item>
+        <item>vegan</item>
+        <item>pescetarian</item>
+        <item>paleo</item>
+        <item>primal</item>
+    </string-array>
+
+    <string name="cb_peanut">Peanut</string>
+    <string name="cb_tree_nut">Tree Nut</string>
+    <string name="cb_dairy">Dairy</string>
+    <string name="cb_egg">Egg</string>
+    <string name="cb_grain">Grain</string>
+    <string name="cb_wheat">Wheat</string>
+    <string name="cb_gluten">Gluten</string>
+    <string name="cb_sesame">Sesame</string>
+    <string name="cb_soy">Soy</string>
+    <string name="cb_seafood">Seafood</string>
+    <string name="cb_shellfish">Shellfish</string>
+    <string name="cb_sulfite">Sulfite</string>
+
+    <!-- Food Descriptions Fragment Placeholders -->
+
+    <string name="tv_calories_label">Calories per portion:</string>
+    <string name="tv_calories_details">123 Kcal</string>
+    <string name="tv_macros_label">Macros:</string>
+    <string name="tv_macros_details">Protein:59%, Carbohydrates 7%, Fat 34%</string>
+    <string name="tv_recipe_label">Recipe</string>
+    <string name="tv_recipe_details">Heat the oil in a non-stick pan over a medium heat. Add the chicken and fry for 7 mins, or until golden. Add the garlic and ginger and fry for 2 mins. Stir in the honey, soy sauce, vinegar and 100ml water. Bring to the boil and cook for 2 - 5 mins over a medium heat until the chicken is sticky and coated in a thick sauce.</string>
+
+    <string name="toast_error_downloading_food">Error getting food names</string>
+</resources>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_3"
+    tools:context=".SearchSettingsFragment">
+
+    <Button
+        android:id="@+id/btn_find_meals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/color_2"
+        android:text="@string/btn_find_food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AllergyCheckboxes" />
+
+    <EditText
+        android:id="@+id/et_enter_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/et_enter_food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_diet_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/tv_diet_plan_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_enter_food" />
+
+    <TextView
+        android:id="@+id/tv_allergy_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="@string/tv_allergen_label"
+        app:layout_constraintStart_toStartOf="@+id/tv_diet_type"
+        app:layout_constraintTop_toBottomOf="@+id/tv_diet_type" />
+
+    <Spinner
+        android:id="@+id/spn_diet_type"
+        android:layout_width="125dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/white"
+        android:dropDownSelector="@color/black"
+        android:minHeight="48dp"
+        android:popupBackground="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_diet_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_diet_type"
+        app:layout_constraintTop_toTopOf="@+id/tv_diet_type"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AllergyCheckboxes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_allergy_type"
+        app:layout_constraintEnd_toEndOf="@+id/spn_diet_type"
+        app:layout_constraintStart_toEndOf="@+id/tv_allergy_type"
+        app:layout_constraintTop_toTopOf="@+id/tv_allergy_type"
+        app:layout_constraintVertical_bias="0.479">
+
+        <CheckBox
+            android:id="@+id/cbPeanut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_peanut"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/cbTreeNut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/cb_tree_nut"
+            app:layout_constraintStart_toEndOf="@+id/cbPeanut"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/cbDiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_dairy"
+            app:layout_constraintStart_toStartOf="@+id/cbPeanut"
+            app:layout_constraintTop_toBottomOf="@+id/cbPeanut" />
+
+        <CheckBox
+            android:id="@+id/cbEgg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_egg"
+            app:layout_constraintStart_toStartOf="@+id/cbTreeNut"
+            app:layout_constraintTop_toBottomOf="@+id/cbTreeNut" />
+
+        <CheckBox
+            android:id="@+id/cbGrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_grain"
+            app:layout_constraintStart_toStartOf="@+id/cbGluten"
+            app:layout_constraintTop_toBottomOf="@+id/cbGluten" />
+
+        <CheckBox
+            android:id="@+id/cbWheat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_wheat"
+            app:layout_constraintStart_toStartOf="@+id/cbSoy"
+            app:layout_constraintTop_toBottomOf="@+id/cbSoy" />
+
+        <CheckBox
+            android:id="@+id/cbGluten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_gluten"
+            app:layout_constraintStart_toStartOf="@+id/cbSesame"
+            app:layout_constraintTop_toBottomOf="@+id/cbSesame" />
+
+        <CheckBox
+            android:id="@+id/cbSesame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_sesame"
+            app:layout_constraintStart_toStartOf="@+id/cbFish"
+            app:layout_constraintTop_toBottomOf="@+id/cbFish" />
+
+        <CheckBox
+            android:id="@+id/cbSoy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_soy"
+            app:layout_constraintStart_toStartOf="@+id/cbShellfish"
+            app:layout_constraintTop_toBottomOf="@+id/cbShellfish" />
+
+        <CheckBox
+            android:id="@+id/cbFish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_seafood"
+            app:layout_constraintStart_toStartOf="@+id/cbEgg"
+            app:layout_constraintTop_toBottomOf="@+id/cbEgg" />
+
+        <CheckBox
+            android:id="@+id/cbShellfish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_shellfish"
+            app:layout_constraintStart_toStartOf="@+id/cbDiary"
+            app:layout_constraintTop_toBottomOf="@+id/cbDiary" />
+
+        <CheckBox
+            android:id="@+id/cbSulfite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_sulfite"
+            app:layout_constraintStart_toStartOf="@+id/cbWheat"
+            app:layout_constraintTop_toBottomOf="@+id/cbWheat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

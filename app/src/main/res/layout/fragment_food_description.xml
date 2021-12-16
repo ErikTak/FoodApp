@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_3"
+    tools:context=".FoodDescriptionFragment">
+
+    <TextView
+        android:id="@+id/tv_food_name_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="8dp"
+        android:layout_marginTop="20dp"
+        android:text='"food name from API"'
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/title_image2"
+        android:layout_width="320dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="15dp"
+        android:adjustViewBounds="true"
+        android:background="@color/white"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_food_name_details" />
+
+    <TextView
+        android:id="@+id/tv_calories_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/color_1"
+        android:text="@string/tv_calories_label"
+        app:layout_constraintStart_toStartOf="@+id/title_image2"
+        app:layout_constraintTop_toBottomOf="@+id/title_image2" />
+
+    <TextView
+        android:id="@+id/tv_recipe_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/color_1"
+        android:text="@string/tv_recipe_label"
+        app:layout_constraintEnd_toEndOf="@+id/tv_recipe"
+        app:layout_constraintStart_toStartOf="@+id/tv_recipe"
+        app:layout_constraintTop_toBottomOf="@+id/tv_macros_data" />
+
+    <TextView
+        android:id="@+id/tv_calories_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_2"
+        android:text="@string/tv_calories_details"
+        app:layout_constraintStart_toStartOf="@+id/tv_calories_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calories_label" />
+
+    <TextView
+        android:id="@+id/tv_macros_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:background="@color/color_1"
+        android:text="@string/tv_macros_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_calories_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_calories_label" />
+
+    <TextView
+        android:id="@+id/tv_recipe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_2"
+        android:text="@string/tv_recipe_details"
+        app:layout_constraintEnd_toEndOf="@+id/title_image2"
+        app:layout_constraintStart_toStartOf="@+id/title_image2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recipe_label" />
+
+    <TextView
+        android:id="@+id/tv_macros_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@color/color_2"
+        android:text="@string/tv_macros_details"
+        app:layout_constraintEnd_toEndOf="@+id/title_image2"
+        app:layout_constraintStart_toStartOf="@+id/tv_macros_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_calories_number" />
+</androidx.constraintlayout.widget.ConstraintLayout>
