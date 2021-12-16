@@ -43,13 +43,15 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.RecyclerView
 
         holder.mTextViewFoodName.setText(foodListItem.getmFoodName());
         holder.mTextViewTimeToMake.setText("Preparation time: " + foodListItem.getmTimeToMake());
-//        Picasso.get().load(imageUrl).fit().centerInside().into(holder.mImageView);
+        Picasso.get().load(foodListItem.getmImageUrl()).fit().centerInside().into(holder.mImageView);
 
     }
 
     @Override
     public int getItemCount() {
+        if(mFoodList != null)
         return this.mFoodList.size();
+        else return 0;
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{

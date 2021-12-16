@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -20,6 +21,8 @@ import android.widget.Spinner;
  */
 public class SearchSettingsFragment extends Fragment implements View.OnClickListener {
 
+    CheckBox cbPeanut, cbTreeNut, cbDiary, cbEgg, cbGrain, cbWheat, cbGluten, cbSesame, cbSoy, cbFish, cbShellfish, cbSulfite;
+    String intoleranceType= "";
 
     public SearchSettingsFragment() {
         // Required empty public constructor
@@ -61,6 +64,19 @@ public class SearchSettingsFragment extends Fragment implements View.OnClickList
         spnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnDietType.setAdapter(spnAdapter);
 
+        cbPeanut = view.findViewById(R.id.cbPeanut);
+        cbTreeNut = view.findViewById(R.id.cbTreeNut);
+        cbDiary  = view.findViewById(R.id.cbDiary);
+        cbEgg  = view.findViewById(R.id.cbEgg);
+        cbGrain  = view.findViewById(R.id.cbGrain);
+        cbWheat  = view.findViewById(R.id.cbWheat);
+        cbGluten  = view.findViewById(R.id.cbGluten);
+        cbSesame  = view.findViewById(R.id.cbSesame);
+        cbSoy  = view.findViewById(R.id.cbSoy);
+        cbFish  = view.findViewById(R.id.cbFish);
+        cbShellfish  = view.findViewById(R.id.cbShellfish);
+        cbSulfite  = view.findViewById(R.id.cbSulfite);
+
         return view;
     }
 
@@ -72,7 +88,41 @@ public class SearchSettingsFragment extends Fragment implements View.OnClickList
         Spinner spnDietType = getView().findViewById(R.id.spn_diet_type);
         String diettype = spnDietType.getSelectedItem().toString();
         // Get the allergy type
-        
+        if(cbPeanut.isChecked()){
+            intoleranceType += cbPeanut.getText().toString();
+        }
+        if(cbDiary.isChecked()){
+            intoleranceType += cbDiary.getText().toString();
+        }
+        if(cbEgg.isChecked()){
+            intoleranceType += cbEgg.getText().toString();
+        }
+        if(cbGrain.isChecked()){
+            intoleranceType += cbGrain.getText().toString();
+        }
+        if(cbWheat.isChecked()){
+            intoleranceType += cbWheat.getText().toString();
+        }
+        if(cbGluten.isChecked()){
+            intoleranceType += cbGluten.getText().toString();
+        }
+        if(cbSesame.isChecked()){
+            intoleranceType += cbSesame.getText().toString();
+        }
+        if(cbSoy.isChecked()){
+            intoleranceType += cbSoy.getText().toString();
+        }
+        if(cbFish.isChecked()){
+            intoleranceType += cbFish.getText().toString();
+        }
+        if(cbShellfish.isChecked()){
+            intoleranceType += cbShellfish.getText().toString();
+        }
+        if(cbSulfite.isChecked()){
+            intoleranceType += cbSulfite.getText().toString();
+        }
+
+
 
         if (view.getId() == R.id.btn_find_meals){
             // Get the name of the food entered by the user
@@ -83,6 +133,7 @@ public class SearchSettingsFragment extends Fragment implements View.OnClickList
             Bundle args = new Bundle();
             args.putString("foodName", enterfood);
             args.putString("dietPlan", diettype);
+            args.putString("intolerance", intoleranceType);
 
             Navigation.findNavController(view).navigate(R.id.action_searchSettingsFragment_to_recyclerViewFragment, args);
         }

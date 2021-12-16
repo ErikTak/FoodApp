@@ -32,9 +32,9 @@ import java.util.ArrayList;
 
 public class RecyclerViewFragment extends Fragment {
     private RecyclerView mRecyclerView;
-    ArrayList<FoodListItem> mFoodList;
-//    private ArrayList<FoodListItem> mFoodList = new ArrayList<>();
+    private ArrayList<FoodListItem> mFoodList = new ArrayList<>();
     private RequestQueue mRequestQueue;
+    private RecyclerView.Adapter adapter;
 
     private static final String TAG = "RecyclerViewFragment";
 
@@ -42,9 +42,11 @@ public class RecyclerViewFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_FOOD_NAME = "foodName";
     public static final String ARG_DIET_PLAN = "dietPlan";
+    public static final String ARG_ALLERGY_TYPE = "intoleranceType";
 
     private String mFoodName;
     private String mDietPlan;
+    private String mIntoleranceType;
 
     public RecyclerViewFragment() {
         // Required empty public constructor
@@ -56,13 +58,15 @@ public class RecyclerViewFragment extends Fragment {
      *
      * @param foodName the name of the food from user input.
      * @param dietPlan the diet plan selected on the spinner.
+     * @param intoleranceType is the data from the checkboxes.
      * @return A new instance of fragment RecyclerViewFragment.
      */
-    public static RecyclerViewFragment newInstance(String foodName, String dietPlan) {
+    public static RecyclerViewFragment newInstance(String foodName, String dietPlan, String intoleranceType) {
         RecyclerViewFragment fragment = new RecyclerViewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_FOOD_NAME, foodName);
         args.putString(ARG_DIET_PLAN, dietPlan);
+        args.putString(ARG_ALLERGY_TYPE, intoleranceType);
         fragment.setArguments(args);
         return fragment;
     }
@@ -73,6 +77,7 @@ public class RecyclerViewFragment extends Fragment {
         if (getArguments() != null) {
             mFoodName = getArguments().getString(ARG_FOOD_NAME);
             mDietPlan = getArguments().getString(ARG_DIET_PLAN);
+            mIntoleranceType = getArguments().getString(ARG_ALLERGY_TYPE);
         }
     }
 
@@ -86,39 +91,27 @@ public class RecyclerViewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // create the adapter for the RecyclerView
-
-
-//        mFoodList = new ArrayList<>();
-        ArrayList<FoodListItem> mFoodList = parseJSON();
-        FoodsAdapter adapter = new FoodsAdapter(mFoodList);
-
-        // get the RecyclerView
-        mRecyclerView = view.findViewById(R.id.rv_foodlist);
-
-        // wire up RecyclerView with the adapter
-//        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.setAdapter(adapter);
-
-
-        mRequestQueue = Volley.newRequestQueue(getContext());
-//        parseJSON();
+        parseJSON();
     }
 
-    private ArrayList<FoodListItem> parseJSON() {
-        ArrayList<FoodListItem> list = new ArrayList<>();
-        Uri uri = Utils.buildUri("https://api.spoonacular.com/recipes/complexSearch?apiKey=5da441b5a0254a19a401525d92b6cd73", "query", mFoodName, "addRecipeInformation", "true","number", "2");
+
+
+    private void parseJSON() {
+        Uri uri = Utils.buildUri("https://api.spoonacular.com/recipes/complexSearch?apiKey=5da441b5a0254a19a401525d92b6cd73", "query", mFoodName, "addRecipeInformation", "true","number", "3", "diet", mDietPlan, "intolerance", mIntoleranceType);
+        Log.d("Api link", uri.toString());
 
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, uri.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d("API response: ", response.toString());
+                Log.d("intolerance type:", mFoodName);
+                Log.d("intolerance type:", mDietPlan);
+
 
                 //mFoodList.add(new FoodListItem("https:\\/\\/spoonacular.com\\/recipeImages\\/654959-312x231.jpg", "Pasta With Tuna", 45));
                 try {
                     // fetch JSONArray named results
-                    Log.d("try block start:", response.toString());
+//                    Log.d("try block start:", response.toString());
                     JSONArray jsonArray = response.getJSONArray("results");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject result = jsonArray.getJSONObject(i);
@@ -127,13 +120,17 @@ public class RecyclerViewFragment extends Fragment {
                         String imageUrl = result.getString("image");
                         int timeToMake = result.getInt("readyInMinutes");
 
+                        mFoodList.add(new FoodListItem(imageUrl, foodName, timeToMake));
 
-                        FoodListItem fli = new FoodListItem(imageUrl, foodName, timeToMake);
-                        fli.setmFoodName(foodName);
-                        fli.setmImageUrl(imageUrl);
-                        fli.setmTimeToMake(timeToMake);
-                        mFoodList.add(fli);
-                        Log.d("arraylist content: " ,mFoodList.get(i).getmFoodName());
+
+                        Log.d("ArrayList(i) content: " ,mFoodList.get(i).getmFoodName());
+                        mRecyclerView = getView().findViewById(R.id.rv_foodlist);
+
+                        // wire up RecyclerView with the adapter
+                        mRecyclerView.setHasFixedSize(true);
+                        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        adapter = new FoodsAdapter(mFoodList);
+                        mRecyclerView.setAdapter(adapter);
                     }
 
 /*                    mFoodsAdapter = new FoodsAdapter(mFoodList);
@@ -151,20 +148,7 @@ public class RecyclerViewFragment extends Fragment {
             }
         });
 
+        mRequestQueue = Volley.newRequestQueue(getContext());
         mRequestQueue.add(stringRequest);
-        return list;
     }
-
-    private ArrayList<FoodListItem> initCities() {
-        ArrayList<FoodListItem> list = new ArrayList<>();
-
-        list.add(new FoodListItem("https://bit.ly/CBImageCinque", "Cinque Terre", 1234));
-        list.add(new FoodListItem("https://bit.ly/CBImageParis", "Paris", 123));
-        list.add(new FoodListItem("https://bit.ly/CBImageRio", "Rio de Janeiro", 5324));
-        list.add(new FoodListItem("https://bit.ly/CBImageSydney","Sydney", 231));
-
-        return list;
-    }
-
-
 }

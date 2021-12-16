@@ -16,6 +16,7 @@
     <string name="et_enter_food">Search...</string>
 
     <string-array name="spn_diet_choice_array">
+        <item></item>
         <item>glutenfree</item>
         <item>ketogenic</item>
         <item>vegetarian</item>
