@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment{
     private RecyclerView mRecyclerView;
     private ArrayList<FoodListItem> mFoodList = new ArrayList<>();
     private RequestQueue mRequestQueue;
@@ -128,7 +128,12 @@ public class RecyclerViewFragment extends Fragment {
                         // wire up RecyclerView with the adapter
                         mRecyclerView.setHasFixedSize(true);
                         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        adapter = new FoodsAdapter(mFoodList);
+                        adapter = new FoodsAdapter(mFoodList, new FoodsAdapter.CustomItemClickListener() {
+                            @Override
+                            public void onItemClick(View v, int position) {
+                                Log.d("It's working", "it's working:" + position);
+                            }
+                        });
                         mRecyclerView.setAdapter(adapter);
                     }
 

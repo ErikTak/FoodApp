@@ -3,6 +3,7 @@ package com.example.foodapp;
 // Some Utility functions
 
 import android.net.Uri;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -22,3 +23,4 @@ public class Utils {
     }
 
 }
+

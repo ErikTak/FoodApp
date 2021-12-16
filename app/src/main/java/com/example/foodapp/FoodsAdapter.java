@@ -20,9 +20,12 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.RecyclerView
 
     private ArrayList<FoodListItem> mFoodList;
 
-    public FoodsAdapter(ArrayList<FoodListItem> foodList){
+    private CustomItemClickListener listener;
+
+    public FoodsAdapter(ArrayList<FoodListItem> foodList, CustomItemClickListener listener){
         super();
         this.mFoodList = foodList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,7 +35,15 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.RecyclerView
                 .inflate(R.layout.list_item,
                         parent,
                         false);
-        return new RecyclerViewHolder(view);
+        final RecyclerViewHolder mViewHolder = new RecyclerViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(v, mViewHolder.getPosition());
+            }
+        });
+        return mViewHolder;
 
     }
 
@@ -67,5 +78,9 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.RecyclerView
             mTextViewFoodName = view.findViewById(R.id.tv_food_name);
             mTextViewTimeToMake = view.findViewById(R.id.tv_food_time_to_make);
         }
+    }
+
+    public interface CustomItemClickListener {
+        public void onItemClick(View v, int position);
     }
 }
