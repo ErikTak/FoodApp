@@ -32,7 +32,8 @@ import java.util.ArrayList;
 
 public class RecyclerViewFragment extends Fragment {
     private RecyclerView mRecyclerView;
-    private ArrayList<FoodListItem> mFoodList = new ArrayList<>();
+    ArrayList<FoodListItem> mFoodList;
+//    private ArrayList<FoodListItem> mFoodList = new ArrayList<>();
     private RequestQueue mRequestQueue;
 
     private static final String TAG = "RecyclerViewFragment";
@@ -86,7 +87,11 @@ public class RecyclerViewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // create the adapter for the RecyclerView
-        FoodsAdapter adapter = new FoodsAdapter(getContext(), mFoodList);
+
+
+//        mFoodList = new ArrayList<>();
+        ArrayList<FoodListItem> mFoodList = parseJSON();
+        FoodsAdapter adapter = new FoodsAdapter(mFoodList);
 
         // get the RecyclerView
         mRecyclerView = view.findViewById(R.id.rv_foodlist);
@@ -96,13 +101,13 @@ public class RecyclerViewFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(adapter);
 
-        mFoodList = new ArrayList<>();
 
-        mRequestQueue = Volley.newRequestQueue(view.getContext());
-        parseJSON();
+        mRequestQueue = Volley.newRequestQueue(getContext());
+//        parseJSON();
     }
 
-    private void parseJSON() {
+    private ArrayList<FoodListItem> parseJSON() {
+        ArrayList<FoodListItem> list = new ArrayList<>();
         Uri uri = Utils.buildUri("https://api.spoonacular.com/recipes/complexSearch?apiKey=5da441b5a0254a19a401525d92b6cd73", "query", mFoodName, "addRecipeInformation", "true","number", "2");
 
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, uri.toString(), null, new Response.Listener<JSONObject>() {
@@ -147,5 +152,19 @@ public class RecyclerViewFragment extends Fragment {
         });
 
         mRequestQueue.add(stringRequest);
+        return list;
     }
+
+    private ArrayList<FoodListItem> initCities() {
+        ArrayList<FoodListItem> list = new ArrayList<>();
+
+        list.add(new FoodListItem("https://bit.ly/CBImageCinque", "Cinque Terre", 1234));
+        list.add(new FoodListItem("https://bit.ly/CBImageParis", "Paris", 123));
+        list.add(new FoodListItem("https://bit.ly/CBImageRio", "Rio de Janeiro", 5324));
+        list.add(new FoodListItem("https://bit.ly/CBImageSydney","Sydney", 231));
+
+        return list;
+    }
+
+
 }
