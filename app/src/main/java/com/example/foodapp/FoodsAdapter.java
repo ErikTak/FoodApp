@@ -1,5 +1,6 @@
 package com.example.foodapp;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +17,21 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.RecyclerViewHolder> {
-    private ArrayList<FoodListItem> mFoodList;
 
-    public FoodsAdapter(ArrayList<FoodListItem> foodList){
-        mFoodList = foodList;
+    private ArrayList<FoodListItem> mFoodList;
+    private final Context context;
+
+    public FoodsAdapter(Context context, ArrayList<FoodListItem> foodList){
+        super();
+        this.context = context;
+        this.mFoodList = foodList;
     }
 
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_recycler_view,
+        View view = LayoutInflater.from(this.context)
+                .inflate(R.layout.list_item,
                         parent,
                         false);
         return new RecyclerViewHolder(view);
@@ -34,12 +39,12 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.RecyclerView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        FoodListItem currentItem = mFoodList.get(position);
+    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int i) {
+        FoodListItem currentItem = this.mFoodList.get(i);
 
-        String imageUrl = currentItem.getImageUrl();
-        String foodName = currentItem.getFoodName();
-        int timeToMake = currentItem.getTimeToMake();
+        String imageUrl = currentItem.getmImageUrl();
+        String foodName = mFoodList.get(i).getmFoodName();
+        int timeToMake = currentItem.getmTimeToMake();
 
         holder.mTextViewFoodName.setText(foodName);
         holder.mTextViewTimeToMake.setText("Preparation time: " + timeToMake);
@@ -49,10 +54,7 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.RecyclerView
 
     @Override
     public int getItemCount() {
-        if (mFoodList != null)
-        return mFoodList.size();
-        else
-            return 0;
+        return this.mFoodList.size();
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{
@@ -67,5 +69,4 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.RecyclerView
             mTextViewTimeToMake = itemView.findViewById(R.id.tv_food_time_to_make);
         }
     }
-
 }

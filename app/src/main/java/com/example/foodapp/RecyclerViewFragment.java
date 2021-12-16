@@ -32,8 +32,7 @@ import java.util.ArrayList;
 
 public class RecyclerViewFragment extends Fragment {
     private RecyclerView mRecyclerView;
-    private FoodsAdapter mFoodsAdapter;
-    private ArrayList<FoodListItem> mFoodList = new ArrayList<FoodListItem>();
+    private ArrayList<FoodListItem> mFoodList = new ArrayList<>();
     private RequestQueue mRequestQueue;
 
     private static final String TAG = "RecyclerViewFragment";
@@ -79,27 +78,29 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        return inflater.inflate(R.layout.fragment_recycler_view, container, false);
+    }
 
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // create the adapter for the RecyclerView
+        FoodsAdapter adapter = new FoodsAdapter(getContext(), mFoodList);
+
+        // get the RecyclerView
         mRecyclerView = view.findViewById(R.id.rv_foodlist);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        mRecyclerView.setAdapter(new FoodsAdapter(mFoodList));
+
+        // wire up RecyclerView with the adapter
+//        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setAdapter(adapter);
 
         mFoodList = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(view.getContext());
         parseJSON();
-        return view;
     }
-
-/*    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }*/
 
     private void parseJSON() {
         Uri uri = Utils.buildUri("https://api.spoonacular.com/recipes/complexSearch?apiKey=5da441b5a0254a19a401525d92b6cd73", "query", mFoodName, "addRecipeInformation", "true","number", "2");
@@ -107,26 +108,31 @@ public class RecyclerViewFragment extends Fragment {
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, uri.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.d("asdqwe", response.toString());
-
-
+                Log.d("API response: ", response.toString());
 
                 //mFoodList.add(new FoodListItem("https:\\/\\/spoonacular.com\\/recipeImages\\/654959-312x231.jpg", "Pasta With Tuna", 45));
                 try {
                     // fetch JSONArray named results
+                    Log.d("try block start:", response.toString());
                     JSONArray jsonArray = response.getJSONArray("results");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject result = jsonArray.getJSONObject(i);
 
- //                       String foodName = result.getString("title");
-//                        String imageUrl = result.getString("image");
-//                        int timeToMake = result.getInt("readyInMinutes");
+                        String foodName = result.getString("title");
+                        String imageUrl = result.getString("image");
+                        int timeToMake = result.getInt("readyInMinutes");
 
-                        mFoodList.add(new FoodListItem( result.getString("image"), result.getString("title"), result.getInt("readyInMinutes")));
+
+                        FoodListItem fli = new FoodListItem(imageUrl, foodName, timeToMake);
+                        fli.setmFoodName(foodName);
+                        fli.setmImageUrl(imageUrl);
+                        fli.setmTimeToMake(timeToMake);
+                        mFoodList.add(fli);
+                        Log.d("arraylist content: " ,mFoodList.get(i).getmFoodName());
                     }
 
-                    mFoodsAdapter = new FoodsAdapter(mFoodList);
-                    mRecyclerView.setAdapter(mFoodsAdapter);
+/*                    mFoodsAdapter = new FoodsAdapter(mFoodList);
+                    mRecyclerView.setAdapter(mFoodsAdapter);*/
 
                 } catch (JSONException e) {
                     Toast.makeText(getActivity(), getString(R.string.toast_error_downloading_food), Toast.LENGTH_LONG);

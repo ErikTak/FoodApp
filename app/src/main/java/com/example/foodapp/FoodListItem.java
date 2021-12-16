@@ -11,20 +11,27 @@ public class FoodListItem {
         mTimeToMake = timeToMake;
     }
 
-    public String getImageUrl(){
+    public String getmImageUrl() {
         return mImageUrl;
     }
 
-    public void setFoodName(String inFoodName){
-        this.mFoodName = inFoodName;
-
+    public void setmImageUrl(String mImageUrl) {
+        this.mImageUrl = mImageUrl;
     }
 
-    public String getFoodName(){
+    public String getmFoodName() {
         return mFoodName;
     }
 
-    public int getTimeToMake(){
+    public void setmFoodName(String mFoodName) {
+        this.mFoodName = mFoodName;
+    }
+
+    public int getmTimeToMake() {
         return mTimeToMake;
+    }
+
+    public void setmTimeToMake(int mTimeToMake) {
+        this.mTimeToMake = mTimeToMake;
     }
 }
