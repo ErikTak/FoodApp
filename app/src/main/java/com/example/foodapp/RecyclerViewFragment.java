@@ -91,14 +91,15 @@ public class RecyclerViewFragment extends Fragment {
         mFoodList = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(view.getContext());
+        parseJSON();
         return view;
     }
 
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+/*    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        parseJSON();
-    }
+
+    }*/
 
     private void parseJSON() {
         Uri uri = Utils.buildUri("https://api.spoonacular.com/recipes/complexSearch?apiKey=5da441b5a0254a19a401525d92b6cd73", "query", mFoodName, "addRecipeInformation", "true","number", "2");
@@ -106,12 +107,14 @@ public class RecyclerViewFragment extends Fragment {
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, uri.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
+                Log.d("asdqwe", response.toString());
 
+
+
+                //mFoodList.add(new FoodListItem("https:\\/\\/spoonacular.com\\/recipeImages\\/654959-312x231.jpg", "Pasta With Tuna", 45));
                 try {
                     // fetch JSONArray named results
-                    JSONObject rootObject = new JSONObject(response.toString());
-                    JSONArray jsonArray = rootObject.getJSONArray("results");
+                    JSONArray jsonArray = response.getJSONArray("results");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject result = jsonArray.getJSONObject(i);
 
@@ -119,7 +122,7 @@ public class RecyclerViewFragment extends Fragment {
 //                        String imageUrl = result.getString("image");
 //                        int timeToMake = result.getInt("readyInMinutes");
 
-                        mFoodList.add(new FoodListItem(result.getString("title"), result.getString("image"), result.getInt("readyInMinutes")));
+                        mFoodList.add(new FoodListItem( result.getString("image"), result.getString("title"), result.getInt("readyInMinutes")));
                     }
 
                     mFoodsAdapter = new FoodsAdapter(mFoodList);
