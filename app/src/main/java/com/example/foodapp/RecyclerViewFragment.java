@@ -98,7 +98,7 @@ public class RecyclerViewFragment extends Fragment{
 
 
     private void parseJSON() {
-        Uri uri = Utils.buildUri("https://api.spoonacular.com/recipes/complexSearch?apiKey=5da441b5a0254a19a401525d92b6cd73", "query", mFoodName, "addRecipeInformation", "true","number", "3", "diet", mDietPlan, "intolerance", mIntoleranceType);
+        Uri uri = Utils.buildUri("https://api.spoonacular.com/recipes/complexSearch?apiKey=5da441b5a0254a19a401525d92b6cd73", "query", mFoodName, "addRecipeInformation", "true","number", "10", "diet", mDietPlan, "intolerance", mIntoleranceType);
         Log.d("Api link", uri.toString());
 
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, uri.toString(), null, new Response.Listener<JSONObject>() {
