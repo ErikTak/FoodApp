@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -106,7 +107,6 @@ public class FoodDescriptionFragment extends Fragment implements View.OnClickLis
         TextView mTextViewSpoonacularScore = view.findViewById(R.id.tv_spoonacular_score_text);
         TextView mTextViewHealthScore = view.findViewById(R.id.tv_health_score_text);
         TextView mTextViewSummary = view.findViewById(R.id.tv_summary_text);
-        TextView mTextViewSourceUrl = view.findViewById(R.id.tv_link_to_recipe_text);
         ImageView mImageView = view.findViewById(R.id.title_image2);
 
 
@@ -115,16 +115,19 @@ public class FoodDescriptionFragment extends Fragment implements View.OnClickLis
         mTextViewSpoonacularScore.setText(mSpoonacularScore + "/100");
         mTextViewHealthScore.setText(mHealthScore + " points");
         mTextViewSummary.setText(mSummary);
-        mTextViewSourceUrl.setText(mSourceUrl);
         Picasso.get().load(mImageUrl).fit().centerInside().into(mImageView);
+
+        Button btnLinkToRecipe = view.findViewById(R.id.btn_link_to_recipe_text);
+        btnLinkToRecipe.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tv_link_to_recipe_text){
+        if (v.getId() == R.id.btn_link_to_recipe_text){
             Log.d("Link click", "worked");
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mSourceUrl));
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(mSourceUrl));
             startActivity(intent);
         }
     }

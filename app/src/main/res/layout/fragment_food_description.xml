@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="55dp"
+    android:layout_marginTop="60dp"
     android:background="@color/color_3"
     tools:context=".FoodDescriptionFragment">
 
@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/color_1"
-        android:text="Link to the recipe:"
+        android:background="@color/color_3"
+        android:text="@string/tv_link_to_recipe"
         app:layout_constraintStart_toStartOf="@+id/tv_summary_text"
         app:layout_constraintTop_toBottomOf="@+id/tv_summary_text" />
 
@@ -23,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/color_1"
-        android:text="Summary:"
+        android:background="@color/color_3"
+        android:text="@string/tv_summary"
         app:layout_constraintStart_toStartOf="@+id/tv_health_score"
         app:layout_constraintTop_toBottomOf="@+id/tv_health_score" />
 
@@ -35,7 +35,7 @@
         android:layout_margin="8dp"
         android:layout_marginHorizontal="8dp"
         android:layout_marginVertical="8dp"
-        android:text='"food name from API"'
+        android:text="@string/tv_food_name_from_api"
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -44,8 +44,8 @@
 
     <ImageView
         android:id="@+id/title_image2"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
+        android:layout_width="205dp"
+        android:layout_height="188dp"
         android:adjustViewBounds="true"
         android:background="@color/white"
         android:scaleType="centerCrop"
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/color_1"
+        android:background="@color/color_3"
         android:text="Prep time: "
         app:layout_constraintStart_toStartOf="@+id/tv_food_name_details"
         app:layout_constraintTop_toBottomOf="@+id/tv_food_name_details" />
@@ -68,18 +68,21 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/color_2"
-        android:text="@string/tv_calories_details"
+        android:layout_marginBottom="30dp"
+        android:background="@color/color_3"
+        android:text="@string/tv_summary_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/title_image2"
         app:layout_constraintStart_toStartOf="@+id/tv_summary"
-        app:layout_constraintTop_toBottomOf="@+id/tv_summary" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_summary"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_ready_in_minutes_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/color_2"
-        android:text="@string/tv_calories_details"
+        android:background="@color/color_3"
+        android:text="@string/tv_prep_time_text"
         app:layout_constraintEnd_toEndOf="@+id/tv_food_name_details"
         app:layout_constraintTop_toTopOf="@+id/tv_ready_in_minutes" />
 
@@ -87,8 +90,8 @@
         android:id="@+id/tv_spoonacular_score_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/color_2"
-        android:text="@string/tv_calories_details"
+        android:background="@color/color_3"
+        android:text="@string/tv_spoonacular_score_text"
         app:layout_constraintEnd_toEndOf="@+id/tv_ready_in_minutes_text"
         app:layout_constraintTop_toTopOf="@+id/tv_spoonacular_score" />
 
@@ -96,8 +99,8 @@
         android:id="@+id/tv_health_score_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/color_2"
-        android:text="@string/tv_calories_details"
+        android:background="@color/color_3"
+        android:text="@string/tv_health_score_text"
         app:layout_constraintEnd_toEndOf="@+id/tv_spoonacular_score_text"
         app:layout_constraintTop_toTopOf="@+id/tv_health_score" />
 
@@ -106,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/color_1"
+        android:background="@color/color_3"
         android:text="Spoonacular Score:"
         app:layout_constraintStart_toStartOf="@+id/tv_ready_in_minutes"
         app:layout_constraintTop_toBottomOf="@+id/tv_ready_in_minutes" />
@@ -116,18 +119,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/color_1"
-        android:text="Health Score:"
+        android:background="@color/color_3"
+        android:text="@string/tv_health_score"
         app:layout_constraintStart_toStartOf="@+id/tv_spoonacular_score"
         app:layout_constraintTop_toBottomOf="@+id/tv_spoonacular_score" />
 
-    <TextView
-        android:id="@+id/tv_link_to_recipe_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="@color/color_2"
-        android:text="@string/tv_macros_details"
+    <Button
+        android:id="@+id/btn_link_to_recipe_text"
+        android:layout_width="289dp"
+        android:layout_height="38dp"
+        android:text="@string/btn_link_to_recipe"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_link_to_recipe"
         app:layout_constraintEnd_toEndOf="@+id/title_image2"
         app:layout_constraintStart_toEndOf="@+id/tv_link_to_recipe"
         app:layout_constraintTop_toTopOf="@+id/tv_link_to_recipe" />

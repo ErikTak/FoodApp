@@ -5,13 +5,11 @@
 
     <string name="tv_welcome">Welcome to Dietamin! Let\'s get you a tasty meal recipe!</string>
     <string name="btn_find_food">Search Recipes</string>
-    <string name="btn_calorie_calculator">Calorie calculator</string>
 
     <!-- Search Settings Fragment -->
 
-    <string name="tv_calorie_calculator_label">Would you like to count your ideal calorie intake?</string>
     <string name="tv_diet_plan_label">What kind of diet plan are you following?</string>
-    <string name="tv_allergen_label">Do you have any allergies?</string>
+    <string name="tv_allergen_label">Do you have any allergies or intolerances?</string>
     <string name="btn_find_meals">Find meals</string>
     <string name="et_enter_food">Search...</string>
 
@@ -43,12 +41,19 @@
 
     <!-- Food Descriptions Fragment Placeholders -->
 
-    <string name="tv_calories_label">Calories per portion:</string>
-    <string name="tv_calories_details">123 Kcal</string>
-    <string name="tv_macros_label">Macros:</string>
-    <string name="tv_macros_details">Protein:59%, Carbohydrates 7%, Fat 34%</string>
-    <string name="tv_recipe_label">Recipe</string>
-    <string name="tv_recipe_details">Heat the oil in a non-stick pan over a medium heat. Add the chicken and fry for 7 mins, or until golden. Add the garlic and ginger and fry for 2 mins. Stir in the honey, soy sauce, vinegar and 100ml water. Bring to the boil and cook for 2 - 5 mins over a medium heat until the chicken is sticky and coated in a thick sauce.</string>
+    <string name="tv_food_name_from_api">food name from API</string>
+    <string name="tv_prep_time">Prep Time</string>
+    <string name="tv_prep_time_text">XX minutes</string>
+    <string name="tv_spoonacular_score">Spoonacular Score:</string>
+    <string name="tv_spoonacular_score_text">XX/100</string>
+    <string name="tv_health_score">Health Score:</string>
+    <string name="tv_health_score_text">XX points</string>
+    <string name="tv_summary">Summary:</string>
+    <string name="tv_summary_text">This is a summary of the meal you\'ve just clicked on</string>
+    <string name="tv_link_to_recipe">Go to website!</string>
+    <string name="btn_link_to_recipe">Open in browser</string>
+
+    <!-- Other Strings -->
 
     <string name="toast_error_downloading_food">Error getting food names</string>
 </resources>
