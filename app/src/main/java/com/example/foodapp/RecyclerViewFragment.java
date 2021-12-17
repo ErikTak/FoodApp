@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -118,8 +119,12 @@ public class RecyclerViewFragment extends Fragment{
                         String foodName = result.getString("title");
                         String imageUrl = result.getString("image");
                         int timeToMake = result.getInt("readyInMinutes");
+                        int spoonacularScore = result.getInt("spoonacularScore");
+                        int healthScore = result.getInt("healthScore");
+                        String summary = result.getString("summary");
+                        String sourceUrl = result.getString("sourceUrl");
 
-                        mFoodList.add(new FoodListItem(imageUrl, foodName, timeToMake));
+                        mFoodList.add(new FoodListItem(imageUrl, foodName, timeToMake, spoonacularScore, healthScore, summary, sourceUrl));
 
 
                         Log.d("ArrayList(i) content: " ,mFoodList.get(i).getmFoodName());
@@ -131,7 +136,21 @@ public class RecyclerViewFragment extends Fragment{
                         adapter = new FoodsAdapter(mFoodList, new FoodsAdapter.CustomItemClickListener() {
                             @Override
                             public void onItemClick(View v, int position) {
-                                Log.d("It's working", "it's working:" + position);
+                                FoodListItem foodListItem = mFoodList.get(position);
+//                                Log.d("It's working", "it's working:" + position);
+
+
+                                // send data about the item clicked in the recycler view to the next screen
+                                Bundle args = new Bundle();
+                                args.putString("foodName", foodListItem.getmFoodName());
+                                args.putString("imageUrl", foodListItem.getmImageUrl());
+                                args.putInt("timeToMake", foodListItem.getmTimeToMake());
+                                args.putInt("spoonacularScore", foodListItem.getmSpoonacularScore());
+                                args.putInt("healthScore", foodListItem.getmHealthScore());
+                                args.putString("summary", foodListItem.getmSummary());
+                                args.putString("sourceUrl", foodListItem.getmSourceUrl());
+
+                                Navigation.findNavController(getView()).navigate(R.id.action_recyclerViewFragment_to_foodDescriptionFragment, args);
                             }
                         });
                         mRecyclerView.setAdapter(adapter);
